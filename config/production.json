@@ -1,0 +1,6 @@
+{
+    "dburl": "mongodb://localhost/BBT_Dieter",
+    "options": {
+        "server": { "poolSize": 10 }
+    }
+}

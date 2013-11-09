@@ -1,0 +1,16 @@
+{
+  "name": "BBT_Dieter",
+  "version": "0.1.0",
+  "homepage": "https://github.com/BBTBoys/BBT_Dieter",
+  "authors": [
+    "dduskim@gmail.com"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

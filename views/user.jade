@@ -1,0 +1,30 @@
+extends layout
+
+block content
+	h1= title
+
+	form#signUpForm(onsubmit='javascript:return false;')
+		span ID
+		input(type='text', id='id')
+		span PW
+		input(type='password', id='pw')
+		button#singUpBtn 가입하기
+
+	ul#userList
+	- for (var key in users)
+		li= users[key].id
+
+	script.
+		$('#signUpForm').on('submit', function () {
+			$.post('/api/user', {
+				id: $('#id').val(),
+				pw: $('#pw').val()
+			}, function (data) {
+				if (data.code === 200) {
+					alert(data.message);
+					location.reload();
+				} else {
+					alert(data.message);
+				}
+			});
+		});

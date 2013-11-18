@@ -1,5 +1,10 @@
 extends layout
-
 block content
-  h1= title
-  p Hello to #{title}
+	div.container
+		form.form-signin
+			<h2 class="form-signin-heading">Please sign in</h2>
+			<input type="text" class="input-block-level" placeholder="Email address">
+			<input type="password" class="input-block-level" placeholder="Password">
+			label.checkbox
+				<input type="checkbox" value="remember-me"> Remember me
+			<button class="btn btn-large btn-primary" type="submit">Sign in</button>

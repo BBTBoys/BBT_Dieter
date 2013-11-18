@@ -1,8 +1,7 @@
-var User = function (id, password, nickName, userWeightId) {
+var User = function (id, password, nickName) {
 	this.id = id;
 	this.password = password;
 	this.nickName = nickName;
-	this.userWeightId = userWeightId;
 };
 
 User.prototype.getId = function () {
@@ -25,14 +24,6 @@ User.prototype.getNickName = function () {
 	return this.nickName;
 };
 
-User.prototype.setNickname = function (nickName) {
+User.prototype.setNickName = function (nickName) {
 	this.nickName = nickName;
-};
-
-User.prototype.getUserWeightId = function () {
-	return this.userWeightId;
-};
-
-User.prototype.setUserWeightId = function (userWeightId) {
-	this.userWeightId = userWeightId;
 };

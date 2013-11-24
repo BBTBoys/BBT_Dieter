@@ -31,6 +31,15 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/users', user.list);
 
+// create User Form
+app.get('/user/create', user.createForm);
+// create user
+app.post('/user/create', user.create);
+// join user
+app.post('/user/join', user.join);
+// weight save
+app.post('/user/weight/save', user.saveWeight);
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

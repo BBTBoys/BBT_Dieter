@@ -1,24 +1,24 @@
 var mongoose = require('mongoose');
+//mongoose.connect('mongodb://localhost/dieter');
 
 var Schema = mongoose.Schema;
 
 var WeightSchema = new Schema({
-	id : Number,
 	userId : String,
 	weight : Number,
-	regDateTime : String,
+	regDateTime : Date,
 	goalWeight : Number
 });
 
 function insert (data, callback) {
-	var WeightModel = mongoose.model('weight_'+data.userId, WeightSchema),
+	var WeightModel = mongoose.model('weight', WeightSchema),
 		weight = new WeightModel(data);
-	
 	weight.save(function (err) {
 		if (!err) {
 			callback({
 				code : 200,
-				message : 'success insert weight by userId'
+				message : 'success insert weight by userId',
+				content : '<li>weight : '+data.weight+', regDate : '+data.regDateTime+'</li>'
 			});
 		} else {
 			callback({
@@ -30,7 +30,7 @@ function insert (data, callback) {
 }
 
 function findByUserId (userId, callback) {
-	var WeightModel = mongoose.model('weight_'+userId, WeightSchema);
+	var WeightModel = mongoose.model('weight', WeightSchema);
 	
 	WeightModel.find({userId:userId}).exec(function (err, docs) {
 		if (!err) {

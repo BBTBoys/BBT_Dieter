@@ -1,0 +1,9 @@
+extends ../layout
+block content
+	div.container
+		<input type="text" id="weight" placeholder="insert Weight">
+		<button type="button" class="btn btn-primary" onclick="dieter.Weight.saveWeight('#{userId}'); return false;">save Weight</button>
+	div.container
+		ul(id="listWrapper")
+			- for(var idx in data) 
+				li= 'weight : '+ data[idx].weight + ', regDate : ' + data[idx].regDateTime

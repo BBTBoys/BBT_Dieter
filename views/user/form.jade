@@ -1,0 +1,9 @@
+extends ../layout
+block content
+	div.container
+		form(class='form-signin', action='/user/create', method='POST')
+			<h2 class="form-signin-heading">#{title}</h2>
+			<input type="text" name="id" class="input-block-level" placeholder="Email address">
+			<input type="password" name="password" class="input-block-level" placeholder="Password">
+			<input type="text" name="nickName" class="input-block-level" placeholder="nickName">
+			<button class="btn btn-large btn-primary" type="submit">Create</button>

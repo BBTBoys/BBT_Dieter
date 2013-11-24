@@ -1,11 +1,12 @@
 var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/dieter');
 
 var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
 	id : String,
 	password : String,
-	nick_name : String
+	nickName : String
 });
 
 function insert (data, callback) {
@@ -59,12 +60,12 @@ function updateNickName (userId, nickName, callback) {
 		} else {
 			callback({
 				code : 500,
-				message 'fail update nickName ' + err
+				message : 'fail update nickName ' + err
 			});
 		}
 	});
 }
 
 exports.insert = insert;
-exports.findUser findUser;
+exports.findUser = findUser;
 exports.updateNickName = updateNickName;

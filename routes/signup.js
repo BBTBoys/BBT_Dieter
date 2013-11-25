@@ -4,5 +4,9 @@
  */
 
 exports.list = function(req, res){
-  res.send("respond with a resource asfdafasdf");
+  res.render("signup");
 };
+
+exports.api = function(req, res){
+	
+}

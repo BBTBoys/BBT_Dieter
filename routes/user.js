@@ -48,12 +48,14 @@ exports.join = function (req, res) {
 	password = body.password,
 	user = User;
 	
-	if (id) {
-		UserDao.findUser(id, function (opt) {
+	if (id && password) {
+		UserDao.findUser(id, password, function (opt) {
 			if (opt && opt.code == 200) {
 				UserWeightDao.findByUserId(id, function (opt) {
-					res.render('user/weight', {userId:id, data:opt.result});
+					res.render('user/weight', {code:200,userId:id, data:opt.result});
 				});
+			} else {
+				res.render('index', {title: 'Please Sign in', message:'your id or password is not correct. please check Infomation'});
 			}
 		});
 	}

@@ -28,16 +28,25 @@ function insert (data, callback) {
 	});
 }
 
-function findUser (userId, callback) {
+function findUser (userId, password, callback) {
 	var UserModel = mongoose.model('user', UserSchema);
 	
-	UserModel.findOne({id : userId}).exec(function (err, userModel) {
+	UserModel.findOne({id : userId, password : password}, function (err, userModel) {
+		console.log(typeof userModel);
 		if (!err) {
-			callback({
-				code : 200,
-				message : 'success select user',
-				result : userModel
-			});
+			if (userModel) {
+				callback({
+					code : 200,
+					message : 'success select user',
+					result : userModel
+				});
+			} else {
+				callback({
+					code : 404,
+					message : 'user is not exists',
+					result : null
+				});
+			}
 		} else {
 			callback({
 				code : 500,

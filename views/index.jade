@@ -2,8 +2,12 @@ extends layout
 block content
 	div.container
 		form(class='form-signin', action='/user/join', method='POST')
-			<h2 class="form-signin-heading">Please sign in</h2>
+			<h2 class="form-signin-heading">#{title}</h2>
 			<input type="text" name="id" class="input-block-level" placeholder="Email address">
 			<input type="password" name="password" class="input-block-level" placeholder="Password">
 			<button class="btn btn-large btn-primary" type="submit">Sign in</button>
 			<a href="/user/create" class="btn btn-large btn-primary">Create User</button>
+	script.
+		if ('#{message}' != '') {
+			$('div.container').append('<p class="text-center text-error">#{message}</p>');
+		}

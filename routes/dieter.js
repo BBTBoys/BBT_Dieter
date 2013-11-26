@@ -64,3 +64,28 @@ exports.adduser = function(db) {
         });
     };
 };
+
+exports.addweight = function(db) {
+    return function(req, res) {
+    	var userName = req.body.username;
+        var weight = req.body.weight;
+
+        // Set our collection
+        var collection = db.get('dieterlist');
+
+        // Submit to the DB
+        collection.insert({
+            "username" : userName,
+            "weight" : weight
+        }, function (err, doc) {
+            if (err) {
+                // If it failed, return error
+                res.send("There was a problem adding the information to the database.");
+            }
+            else {
+            	res.redirect("dieterlist?username=" + userName);
+            }
+        });
+    };
+};
+

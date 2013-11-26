@@ -3,6 +3,14 @@ extends layout
 block content
     h1.
         Welcome! Dieter : #{username}
+    
+    form#formAddUser(name="addweight",method="post",action="/addweight")
+        input#inputUserName(type="hidden", value="#{username}", name="username")
+        input#inputWeight(type="text", placeholder="weight", name="weight")
+        span.
+            kg
+        button#btnSubmit(type="submit") submit
+        
     ul
         each weight, i in dieterlist
-            li #{i}, email: #{weight}
+            li #{i} : #{weight.weight} kg

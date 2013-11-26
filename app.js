@@ -41,7 +41,9 @@ app.get('/users', user.list);
 app.get('/dieter', dieter.dieter);
 app.get('/userlist', dieter.userlist(db));
 app.post('/adduser', dieter.adduser(db));
+
 app.get('/dieterlist:username?', dieter.dieterlist(db));
+app.post('/addweight', dieter.addweight(db));
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

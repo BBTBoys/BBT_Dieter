@@ -6,8 +6,15 @@
 var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
+var dieter = require('./routes/dieter');
+
 var http = require('http');
 var path = require('path');
+
+// DB Code
+var mongo = require('mongodb');
+var monk = require('monk');
+var db = monk('localhost:27017/dieter');
 
 var app = express();
 
@@ -30,7 +37,11 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/users', user.list);
-app.get('/dieter', routes.dieter);
+
+app.get('/dieter', dieter.dieter);
+app.get('/userlist', dieter.userlist(db));
+app.post('/adduser', dieter.adduser(db));
+app.get('/dieterlist:username?', dieter.dieterlist(db));
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

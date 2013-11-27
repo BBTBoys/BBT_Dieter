@@ -4,8 +4,8 @@
  */
 
 exports.signup = function(req, res){
-	console.log("api signup");
-	res.render("login");
+	console.log(req.body);
+	res.render("list");
 };
 
 exports.login = function(req, res){

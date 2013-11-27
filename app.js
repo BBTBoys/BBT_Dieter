@@ -27,6 +27,11 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+var databaseUrl = "mydb"; // "username:password@example.com/mydb"
+var collections = ["users", "reports"]
+var db = require("mongojs").connect(databaseUrl, collections);
+
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());

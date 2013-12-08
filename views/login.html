@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= title %></title>
+	<%- include header.html %>
+</head>
+<body>
+
+<h1><%= title %></h1>
+<form id="loginForm" onsubmit="javascript:return false;">
+	<span>EMAIL</span>
+	<input type="text" id="email">
+	<span>PASSWORD</span>
+	<input type="password" id="password">
+	<button id="singUpBtn">로그인하기</button>
+</form>
+<a href="/user">회원가입하기</a>
+<script>
+	$('#loginForm').on('submit', function () {
+		$.post('/authenticate', {
+			email: $('#email').val(),
+			password: $('#password').val()
+		}, function (data) {
+			if (data.code === 200) {
+				alert(data.message);
+				location.href = "/weight";
+			} else {
+				alert(data.message);
+			}
+		});
+	});
+</script>
+</body>
+</html>

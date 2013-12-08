@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= title %></title>
+	<%- include header.html %>
+</head>
+<body>
+
+<h1><%= title %></h1>
+<form id="insertWeightForm" onsubmit="javascript:return false;">
+	<span>email</span>
+	<input type="text" id="email" value="dduskim@gmail.com">
+	<span>weight</span>
+	<input type="password" id="weight">
+	<button id="insertWeight">입력하기</button>
+</form>
+<ul id="weightList">
+	<% for(var i=0; i< weights.length; i++) {%>
+	<li><%= weights[i].email %> <%= weights[i].regdate %> <%= weights[i].weight %></li>
+	<% } %>
+</ul>
+<script>
+	$('#insertWeightForm').on('submit', function () {
+		$.post('/api/weight', {
+			email: $('#email').val(),
+			weight: $('#weight').val()
+		}, function (data) {
+			if (data.code === 200) {
+				alert(data.message);
+				location.reload();
+			} else {
+				alert(data.message);
+			}
+		});
+	});
+</script>
+</body>
+</html>

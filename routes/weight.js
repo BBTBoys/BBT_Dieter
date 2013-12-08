@@ -1,33 +1,22 @@
 
 /*
- * GET users listing.
+ * GET weights listing.
  */
-var userDao = require('../dao/userDao.js');
+var weightDao = require('../dao/weightDao.js');
 
 exports.index = function(req, res) {
-    userDao.list(function callback (err, data) {
+    weightDao.list(function callback (err, data) {
         if (err) {
             console.err(err.message);
             res.writeHead(500, {'Content-Type': 'text/plain'});
             res.end('Internal server error');
         }
-        res.render('user.html', { title: 'users', users: data });
+        res.render('weight.html', { title: 'weights', weights: data });
     });
 };
 
 exports.list = function(req, res) {
-    userDao.list(function callback (err, data) {
-        if (err) {
-            console.err(err.message);
-            res.writeHead(500, {'Content-Type': 'text/plain'});
-            res.end('Internal server error');
-        }
-        res.json(data);
-    });
-};
-
-exports.find = function(req, res) {
-    userDao.find(req.params.email ,function callback (err, data) {
+    weightDao.list(function callback (err, data) {
         if (err) {
             console.err(err.message);
             res.writeHead(500, {'Content-Type': 'text/plain'});
@@ -38,12 +27,12 @@ exports.find = function(req, res) {
 };
 
 exports.insert = function(req, res){
-    var user = {
+    var weight = {
         'email' : req.body.email,
-        'password' : req.body.password
+        'weight' : req.body.weight
     };
 
-    userDao.insert(user ,function callback (err, data) {
+    weightDao.insert(weight ,function callback (err, data) {
         if (err) {
             console.err(err.message);
             res.writeHead(500, {'Content-Type': 'text/plain'});

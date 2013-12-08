@@ -1,14 +1,41 @@
 BBT_Dieter
 ==========
+12/08
 
-BBT First Project.
-- HOME : https://github.com/BBTBoys/BBT_Dieter/wiki/BBT_Dieter
 
-- node.js version : over v0.10.21
+* 최소 기능 정의
+1. 회원가입
+- 이메일, 비번
+2. 로그인
+- 이메일, 비번
+- 로그인되면 리다이렉트
+- 없으면 false
+3. 체중입력
+- 아이디(이메일)
+- 날짜
+- 체중
+4. 리스트 뷰
+- 날짜별 체중
 
-- 체크아웃 후 실행 전 필수 라이브러리 (프로젝트마다 각각 설치필요)
- 
- $npm install express
+* DB 변경 (PostgreSQL로 이전)
+1. User
+- key : uniq key
+- 이메일
+- 비번
+2. Weight
+- key : uniq key
+- 날짜
+- 체중
 
- $npm install jade
+* 작업 히스토리
+— 1. postgre sql 설치 완료
+— 2. 테이블 작성 완료
+— 3. postgre - node-pg 설치 완료
+— 4. dao 작성 완료
+— 5. 템플릿 엔진 ejs로 수정
+- 6. 로그인 페이지, 회원가입페이지, 리스트 뷰 (+ 체중입력 뷰) 만들기 완료
 
+* TODO
+- 커넥션 관리 및 풀링
+- 로그인 인증
+- config 파일 정리

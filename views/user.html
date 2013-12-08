@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= title %></title>
+	<%- include header.html %>
+</head>
+<body>
+
+<h1><%= title %></h1>
+	<form id="signUpForm" onsubmit="javascript:return false;">
+		<span>EMAIL</span>
+		<input type="text" id="email">
+		<span>PASSWORD</span>
+		<input type="password" id="password">
+		<button id="singUpBtn">가입하기</button>
+	</form>
+	<ul id="userList">
+		<% for(var i=0; i< users.length; i++) {%>
+		<li><%= users[i].email %></li>
+		<% } %>
+	</ul>
+	<script>
+		$('#signUpForm').on('submit', function () {
+			$.post('/api/user', {
+				email: $('#email').val(),
+				password: $('#password').val()
+			}, function (data) {
+				if (data.code === 200) {
+					alert(data.message);
+					location.reload();
+				} else {
+					alert(data.message);
+				}
+			});
+		});
+	</script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 {
-    "dburl": "mongodb://localhost/BBT_Dieter",
+    "dburl": "postgres://postgres:5432@localhost/postgres",
     "options": {
         "server": { "poolSize": 5 }
     }

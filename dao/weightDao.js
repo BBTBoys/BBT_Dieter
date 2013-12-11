@@ -1,12 +1,7 @@
 
 var pg = require('pg');
-var client = new pg.Client({
-    user: 'nr_db_dieter',
-    password: '_-S5RN7MFL10woMr5jKa26TnVaCVWV4T',
-    database: 'nr_db_dieter',
-    host: 'db1.postgresql.9rum.cc',
-    port: 5432
-});
+var MY_POSTGRESQL_URL = 'postgres://nr_db_dieter:_-S5RN7MFL10woMr5jKa26TnVaCVWV4T@db1.postgresql.9rum.cc:5432/nr_db_dieter';
+var client = new pg.Client(process.env.POSTGRESQL_URL || MY_POSTGRESQL_URL);
 
 function list (callback) {
     client.connect(function(err) {

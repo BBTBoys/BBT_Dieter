@@ -1,10 +1,10 @@
 
 var pg = require('pg');
 var client = new pg.Client({
-    user: 'postgres',
-    password: 'rlaengud2',
-    database: 'bbt_dieter',
-    host: 'localhost',
+    user: 'nr_db_dieter',
+    password: '_-S5RN7MFL10woMr5jKa26TnVaCVWV4T',
+    database: 'nr_db_dieter',
+    host: 'db1.postgresql.9rum.cc',
     port: 5432
 });
 
@@ -14,7 +14,7 @@ function list (callback) {
             console.error('could not connect to postgres', err);
             return callback(err);
         }
-        client.query('SELECT email, password FROM "user"', function(err, result) {
+        client.query('SELECT email, password FROM "dt_user"', function(err, result) {
             if(err) {
                 console.error('error running query', err);
                 return callback(err);
@@ -31,7 +31,7 @@ function find (email, callback) {
             console.error('could not connect to postgres', err);
             return callback(err);
         }
-        client.query('SELECT email, password FROM "user" WHERE email=$1', [email], function(err, result) {
+        client.query('SELECT email, password FROM "dt_user" WHERE email=$1', [email], function(err, result) {
             if(err) {
                 console.error('error running query', err);
                 return callback(err);
@@ -48,7 +48,7 @@ function insert (data, callback) {
             console.error('could not connect to postgres', err);
             return callback(err);
         }
-        client.query('INSERT INTO "user"(email, password) VALUES ($1, $2)', [data.email, data.password], function(err, result) {
+        client.query('INSERT INTO "dt_user"(email, password) VALUES ($1, $2)', [data.email, data.password], function(err, result) {
             if(err) {
                 console.error('error running query', err);
                 return callback(err, {

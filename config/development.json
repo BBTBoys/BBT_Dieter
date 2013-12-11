@@ -1,5 +1,5 @@
 {
-    "dburl": "postgres://postgres:5432@localhost/postgres",
+    "dburl": "postgres://nr_db_dieter:_-S5RN7MFL10woMr5jKa26TnVaCVWV4T@db1.postgresql.9rum.cc:5432/nr_db_dieter",
     "options": {
         "server": { "poolSize": 5 }
     }

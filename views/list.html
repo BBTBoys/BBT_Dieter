@@ -1,8 +1,11 @@
-<form action="list/insert">
+<form action="weight/insert" method="post">
 <h2>몸무게 추가하기 </h2>
 <input type="text" name="weight"/>
 <input type="hidden" name="email" value="hbull@hanmail.net"/>
-<button type="submit"/>
+<button type="submit" value="등록"></button>
 </form>
 
-<%= weights %>
+<% for(var i = 0; i < weights.length; i++) {%>
+   <li><%= weights[i].email %> : <%= weights[i].weight %></li>
+
+<% } %>

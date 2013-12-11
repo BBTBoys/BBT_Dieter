@@ -38,7 +38,7 @@ app.get('/list', list.list);
 app.post('/api/signup', api.signup);
 app.post('/api/login', api.login);
 app.post('/api/add', api.add);
-app.post('/api/list', api.list);
+app.post('/weight/insert', list.insert);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

@@ -19,6 +19,7 @@ function list (callback) {
                 console.error('error running query', err);
                 return callback(err);
             }
+            console.log(result.rows);
             callback(null, result.rows);
             client.end();
         });

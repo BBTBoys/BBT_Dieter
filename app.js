@@ -41,7 +41,7 @@ if ('production' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/login', routes.login);
-app.post('/authenticate', routes.authenticate);
+app.post('/authenticate', user.authenticate);
 
 app.get('/user', user.index);
 app.get('/api/user', user.list);

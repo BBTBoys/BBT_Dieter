@@ -1,54 +1,49 @@
 
 var pg = require('pg');
-var client = new pg.Client({
-    user: 'postgres',
-    password: 'rlaengud2',
-    database: 'bbt_dieter',
-    host: 'localhost',
-    port: 5432
-});
+var conString = "postgres://postgres:daumcorp@localhost:5432/dieter";
 
 function list (callback) {
+	var client = new pg.Client(conString);
     client.connect(function(err) {
         if(err) {
             console.error('could not connect to postgres', err);
             return callback(err);
         }
-        client.query('SELECT email, password FROM "user"', function(err, result) {
+        client.query('SELECT * FROM "users"', function(err, result) {
             if(err) {
                 console.error('error running query', err);
                 return callback(err);
             }
             callback(null, result.rows);
-            client.end();
         });
     });
 }
 
 function find (email, callback) {
+	var client = new pg.Client(conString);
     client.connect(function(err) {
         if(err) {
             console.error('could not connect to postgres', err);
             return callback(err);
         }
-        client.query('SELECT email, password FROM "user" WHERE email=$1', [email], function(err, result) {
+        client.query('SELECT * FROM "users" WHERE email=$1', [email], function(err, result) {
             if(err) {
                 console.error('error running query', err);
                 return callback(err);
             }
             callback(null, result.rows);
-            client.end();
         });
     });
 }
 
 function insert (data, callback) {
+	var client = new pg.Client(conString);
     client.connect(function(err) {
         if(err) {
             console.error('could not connect to postgres', err);
             return callback(err);
         }
-        client.query('INSERT INTO "user"(email, password) VALUES ($1, $2)', [data.email, data.password], function(err, result) {
+        client.query('INSERT INTO "users"(userid, email, password) VALUES ($1, $2, $3)', [data.userId, data.email, data.password], function(err, result) {
             if(err) {
                 console.error('error running query', err);
                 return callback(err, {
@@ -60,7 +55,6 @@ function insert (data, callback) {
                 code : 200,
                 message : 'Sign Up Success'
             });
-            client.end();
         });
     });
 }

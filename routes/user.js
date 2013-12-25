@@ -53,29 +53,6 @@ exports.insert = function(req, res){
     });
 };
 
-exports.authenticate = function(req, res) {
-    var email = req.body.email || '',
-        password = req.body.password || '',
-        returnUrl = req.body.returnUrl || '';
-
-    userDao.find(email ,function callback (err, data) {
-        if (err) {
-            res.writeHead(500, {'Content-Type': 'text/plain'});
-            res.end('Internal server error');
-        }
-        
-        if(true) {
-        	res.cookie('bbt_user_email', email);
-        	res.json({"code": 200, "message": "Login Success"});
-        } else {
-        	res.json({"code": 500, "message": "Login Fail"});
-        }
-        
-    });
-    
-};
-
-
 function encrypt (text, key) {
 	var cipher = crypto.createCipher('aes-256-cbc',key),
 		encipheredContent = cipher.update(text,'utf8','hex');

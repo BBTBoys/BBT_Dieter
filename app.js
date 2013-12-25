@@ -21,6 +21,7 @@ app.set('view engine', 'ejs')
 app.use(express.favicon());
 app.use(express.bodyParser());
 app.use(express.cookieParser());
+app.use(express.session({secret:"user secret"}));
 app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
@@ -41,7 +42,8 @@ if ('production' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/login', routes.login);
-app.post('/authenticate', user.authenticate);
+app.get('/logout', routes.logout);
+app.post('/authenticate', routes.authenticate);
 
 app.get('/user', user.index);
 app.get('/api/user', user.list);

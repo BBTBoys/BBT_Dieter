@@ -1,15 +1,17 @@
 
 var pg = require('pg');
-var client = new pg.Client({
-    user: 'postgres',
-    password: 'rlaengud2',
-    database: 'bbt_dieter',
-    host: 'localhost',
-    port: 5432
-});
+//var client = new pg.Client({
+//    user: 'postgres',
+//    password: 'rlaengud2',
+//    database: 'bbt_dieter',
+//    host: 'localhost',
+//    port: 5432
+//});
+
+var conString = "postgres://postgres:rlaengud2@localhost/bbt_dieter";
 
 function list (callback) {
-    client.connect(function(err) {
+    pg.connect(conString, function(err, client, done) {
         if(err) {
             console.error('could not connect to postgres', err);
             return callback(err);
